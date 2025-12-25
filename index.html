@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蔡文國小Gem增能研習</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Fredoka+One&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
+        .vibrant-bg { background: linear-gradient(120deg, #fdfbfb 0%, #ebf8ff 100%); }
+        .card-pop { 
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.08);
+            transition: all 0.3s ease;
+        }
+        .card-pop:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.12); }
+        .nav-button {
+            padding: 8px 16px;
+            border-radius: 12px;
+            transition: all 0.2s;
+            color: #4b5563;
+        }
+        .nav-button:hover { background: #eff6ff; color: #2563eb; }
+        .nav-button.active { background: #2563eb; color: white; }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .content-wrap { white-space: pre-wrap; word-break: break-all; }
+        
+        /* 加載動畫 */
+        .spinner {
+            animation: rotate 2s linear infinite;
+            width: 40px;
+            height: 40px;
+        }
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="vibrant-bg min-h-screen text-gray-800">
+
+    <div id="app" class="max-w-6xl mx-auto px-4 py-8">
+        <!-- 導覽列 -->
+        <nav class="flex flex-col lg:flex-row justify-between items-center mb-8 gap-6 bg-white/80 backdrop-blur-md p-4 rounded-3xl shadow-sm sticky top-4 z-40 border border-blue-50">
+            <h1 onclick="showSection('home')" class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center gap-2 cursor-pointer">
+                <i data-lucide="sparkles" class="text-yellow-400 fill-yellow-400"></i> 蔡文國小Gem增能研習
+            </h1>
+            <div id="nav-links" class="flex flex-wrap justify-center gap-2 text-sm font-bold">
+                <button onclick="showSection('home')" class="nav-button">首頁</button>
+                <button onclick="goToUnit(0)" class="nav-button">1.班級經營</button>
+                <button onclick="goToUnit(1)" class="nav-button">2.學科教學</button>
+                <button onclick="goToUnit(2)" class="nav-button">3.親師溝通</button>
+                <button onclick="goToUnit(3)" class="nav-button">4.班級活動</button>
+                <button id="nav-results-btn" onclick="showResults()" class="px-5 py-2 bg-gradient-to-r from-orange-400 to-pink-500 text-white rounded-full hover:scale-105 transition flex items-center gap-2 shadow-md">
+                    <i data-lucide="search" class="w-4 h-4"></i> 查看研習成果
+                </button>
+            </div>
+        </nav>
+
+        <!-- 首頁 -->
+        <section id="home-section" class="section-block space-y-8 animate-fade-in">
+            <div class="card-pop p-8 md:p-12 border-t-8 border-blue-500">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <h2 class="text-4xl font-black mb-4 text-gray-900 leading-tight">讓 AI 成為您的超強教練！✨</h2>
+                    <p class="text-xl text-gray-500">歡迎各位蔡文國小的夥伴，讓我們一起解鎖 Gemini 的無限可能。</p>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+                    <div class="p-6 bg-blue-50 rounded-2xl border-b-4 border-blue-200">
+                        <i data-lucide="book-open" class="text-blue-500 mb-3"></i>
+                        <h3 class="font-bold text-blue-800 mb-1">精進教學</h3>
+                        <p class="text-xs text-gray-500">設計互動學習單與教案</p>
+                    </div>
+                    <div class="p-6 bg-green-50 rounded-2xl border-b-4 border-green-200">
+                        <i data-lucide="users" class="text-green-500 mb-3"></i>
+                        <h3 class="font-bold text-green-800 mb-1">班級經營</h3>
+                        <p class="text-xs text-gray-500">處理學生衝突與情緒</p>
+                    </div>
+                    <div class="p-6 bg-yellow-50 rounded-2xl border-b-4 border-yellow-200">
+                        <i data-lucide="message-square" class="text-yellow-600 mb-3"></i>
+                        <h3 class="font-bold text-yellow-800 mb-1">親師溝通</h3>
+                        <p class="text-xs text-gray-500">撰寫有溫度的溝通文字</p>
+                    </div>
+                    <div class="p-6 bg-purple-50 rounded-2xl border-b-4 border-purple-200">
+                        <i data-lucide="party-popper" class="text-purple-500 mb-3"></i>
+                        <h3 class="font-bold text-purple-800 mb-1">行政效率</h3>
+                        <p class="text-xs text-gray-500">活動企劃與文件摘要</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 rounded-3xl p-8 border border-dashed border-gray-300">
+                    <h3 class="text-2xl font-bold mb-6 text-center">開始之前，先許個願吧！</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">我是...</label>
+                                <input type="text" id="user-name" class="w-full p-4 rounded-2xl border-2 border-white bg-white shadow-sm focus:border-blue-400 outline-none transition" placeholder="您的姓名">
+                            </div>
+                            <button onclick="submitWish()" id="btn-submit-wish" class="w-full bg-blue-600 text-white font-black py-4 rounded-2xl hover:bg-blue-700 transition-all hover:shadow-xl hover:scale-[1.02] active:scale-95 shadow-lg shadow-blue-200 text-lg">
+                                開啟 Gem 研習單元
+                            </button>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-2">您的 AI 願望是？</label>
+                            <textarea id="ai-wish" rows="4" class="w-full p-4 rounded-2xl border-2 border-white bg-white shadow-sm focus:border-blue-400 outline-none transition" placeholder="例如：希望 AI 能幫我批改國語習作的造句..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 學習單元區域 -->
+        <section id="units-section" class="section-block hidden space-y-8">
+            <div id="unit-content">
+                <!-- 動態生成內容 -->
+            </div>
+        </section>
+
+        <!-- 測驗結果查詢區域 -->
+        <section id="results-section" class="section-block hidden space-y-6 animate-fade-in">
+            <div class="card-pop p-8 border-t-8 border-orange-400">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <div>
+                        <h2 class="text-3xl font-black text-gray-800 flex items-center gap-2">
+                            <i data-lucide="layout-list" class="text-orange-500"></i> 蔡文夥伴研習牆
+                        </h2>
+                        <p class="text-gray-500 mt-1">點擊內容可進行複製，互相學習交流！</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 w-full md:w-auto">
+                        <button onclick="showResults()" class="p-3 bg-gray-100 rounded-xl hover:bg-gray-200 transition" title="重新整理">
+                            <i data-lucide="refresh-cw" class="w-5 h-5 text-gray-600"></i>
+                        </button>
+                        <div class="relative flex-1 md:w-80">
+                            <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+                            <input type="text" id="search-input" onkeyup="filterResults()" placeholder="搜尋姓名、單元或內容..." class="w-full pl-10 p-3 bg-gray-50 border-2 border-gray-100 rounded-xl text-sm outline-none focus:border-blue-400 transition">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto rounded-2xl border border-gray-100 min-h-[300px]">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50">
+                                <th class="py-4 px-6 text-sm font-black text-gray-600 border-b">老師</th>
+                                <th class="py-4 px-6 text-sm font-black text-gray-600 border-b">學習主題</th>
+                                <th class="py-4 px-6 text-sm font-black text-gray-600 border-b">分享內容 (Gem 設定)</th>
+                                <th class="py-4 px-6 text-sm font-black text-gray-600 border-b">提交時間</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-table-body">
+                            <!-- 由 JS 動態生成內容 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 成功提示框 -->
+        <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-gray-900/90 backdrop-blur text-white px-8 py-4 rounded-2xl opacity-0 transition-opacity pointer-events-none z-50 shadow-2xl font-bold">
+            資料已儲存！
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+
+        // Firebase 設定
+        const firebaseConfig = {
+            apiKey: "AIzaSyCxrOlO-PyQZBknKYpC84XYB7wAxBh6tOA",
+            authDomain: "myreadingcheckin.firebaseapp.com",
+            projectId: "myreadingcheckin",
+            storageBucket: "myreadingcheckin.firebasestorage.app",
+            messagingSenderId: "476306591390",
+            appId: "1:476306591390:web:697f4c3bbf246c4c81358f"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        
+        // 確保路徑符合規範：/artifacts/{appId}/public/data/{collectionName}
+        const appId = "cai-wen-teacher-ai";
+        const resultsCollectionPath = ['artifacts', appId, 'public', 'data', 'quizResults'];
+
+        // 匿名登入
+        signInAnonymously(auth).catch(err => console.error("Auth Error:", err));
+
+        const units = [
+            { id: 1, title: "班級經營：情緒安撫小助手", desc: "設計專業的心理輔導角色。", gemExample: "你現在是一位溫和的兒童心理老師...", quiz: "如果 AI 是一位資深班導師，它應該具備什麼樣的角色性格與說話語氣？" },
+            { id: 2, title: "學科教學：創意教案設計師", desc: "把生澀課程變身冒險遊戲。", gemExample: "你是一位充滿好奇心的冒險家，請設計數學遊戲...", quiz: "如果要讓 AI 設計『國語修辭』教案，您會如何設定它的專家角色背景？" },
+            { id: 3, title: "親師溝通：委婉文字翻譯官", desc: "將想說的話，修飾得更有溫度。", gemExample: "你是一位資深親師溝通專家...", quiz: "當孩子發生偏差行為需告知家長，您會要求 AI 以什麼樣的口吻扮演「校園導師」？" },
+            { id: 4, title: "班級活動：活動企劃大師", desc: "讓節慶活動不再千篇一律。", gemExample: "你是一位得獎的兒童活動策展人...", quiz: "規劃蔡文國小校慶闖關時，您會希望 AI 扮演什麼樣的角色來提供創意？" }
+        ];
+
+        let currentUnitIndex = 0;
+        let globalUserName = "";
+        let allResults = [];
+
+        const refreshIcons = () => { if (typeof lucide !== 'undefined') lucide.createIcons(); };
+
+        window.showSection = (id) => {
+            const sections = document.querySelectorAll('.section-block');
+            sections.forEach(sec => sec.classList.add('hidden'));
+            const target = document.getElementById(`${id}-section`);
+            if (target) target.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            refreshIcons();
+        };
+
+        window.goToUnit = (index) => {
+            if (!globalUserName) {
+                showToast("請先在首頁輸入姓名喔！");
+                showSection('home');
+                return;
+            }
+            currentUnitIndex = index;
+            renderUnit();
+            showSection('units');
+        };
+
+        window.submitWish = async () => {
+            const name = document.getElementById('user-name').value;
+            const wish = document.getElementById('ai-wish').value;
+            if (!name) { showToast("請先輸入姓名喔！"); return; }
+            globalUserName = name;
+            
+            try {
+                // 寫入初始願望
+                await addDoc(collection(db, ...resultsCollectionPath), { 
+                    unitName: "研習願望與需求", 
+                    name, 
+                    answer: wish || "直接開始學習。", 
+                    timestamp: serverTimestamp() 
+                });
+                showToast("願望已收納！");
+                goToUnit(0);
+            } catch (e) { 
+                console.error(e);
+                showToast("連線資料庫失敗，請檢查網路。"); 
+            }
+        };
+
+        window.renderUnit = () => {
+            const unit = units[currentUnitIndex];
+            const container = document.getElementById('unit-content');
+            container.innerHTML = `
+                <div class="card-pop p-8 md:p-12 border-t-8 border-blue-500 animate-fade-in">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                        <h3 class="text-3xl font-black text-gray-900">${unit.title}</h3>
+                        <span class="px-5 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-black">單元 ${unit.id} / 4</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
+                        <div class="space-y-4">
+                            <h4 class="text-lg font-bold flex items-center gap-2"><i data-lucide="info" class="text-blue-500"></i> 單元概念</h4>
+                            <p class="text-gray-600 leading-relaxed">${unit.desc}</p>
+                            <div class="bg-blue-50 p-6 rounded-2xl border-l-8 border-blue-400">
+                                <h5 class="text-xs font-black text-blue-700 uppercase tracking-widest mb-2">Gem 設定範例參考</h5>
+                                <p class="text-gray-700 italic font-medium">「${unit.gemExample}」</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-8 rounded-3xl border-2 border-yellow-200 shadow-inner">
+                            <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+                                <i data-lucide="edit-3" class="text-orange-500"></i> 練習設定您的 Gem
+                            </h4>
+                            <p class="text-sm text-gray-600 mb-4 font-medium">${unit.quiz}</p>
+                            <textarea id="quiz-answer" rows="5" class="w-full p-4 rounded-2xl border-2 border-white shadow-sm focus:border-orange-400 outline-none transition mb-4" placeholder="請試著寫出角色背景、專業能力與期望語氣..."></textarea>
+                            <div class="flex gap-4">
+                                ${currentUnitIndex > 0 ? `<button onclick="goToUnit(${currentUnitIndex - 1})" class="flex-1 py-4 border-2 border-gray-200 rounded-2xl hover:bg-white transition font-bold">上回</button>` : ''}
+                                <button onclick="submitQuiz()" class="flex-[3] bg-gray-900 text-white font-bold py-4 rounded-2xl hover:bg-black transition shadow-lg active:scale-95">
+                                    ${currentUnitIndex === units.length - 1 ? '完成研習並查看牆面' : '儲存成果並下一課'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            setTimeout(refreshIcons, 0);
+        };
+
+        window.submitQuiz = async () => {
+            const answer = document.getElementById('quiz-answer').value;
+            if (!answer) { showToast("請輸入內容喔！"); return; }
+
+            try {
+                await addDoc(collection(db, ...resultsCollectionPath), {
+                    unitName: units[currentUnitIndex].title,
+                    name: globalUserName,
+                    answer,
+                    timestamp: serverTimestamp()
+                });
+                showToast("成果已上牆！");
+                if (currentUnitIndex < units.length - 1) {
+                    currentUnitIndex++;
+                    renderUnit();
+                } else {
+                    showFinalSuccess();
+                }
+            } catch (e) { showToast("資料存取失敗"); }
+        };
+
+        window.showResults = async () => {
+            showSection('results');
+            const tbody = document.getElementById('results-table-body');
+            tbody.innerHTML = '<tr><td colspan="4" class="py-20 text-center text-gray-400"><div class="animate-spin inline-block mb-4"><i data-lucide="refresh-cw" class="w-10 h-10"></i></div><br>載入蔡文夥伴的創意中...</td></tr>';
+            refreshIcons();
+            
+            try {
+                // 使用簡單查詢，不使用 complex orderBy 避免索引未建立問題
+                const querySnapshot = await getDocs(collection(db, ...resultsCollectionPath));
+                allResults = [];
+                querySnapshot.forEach(doc => allResults.push(doc.data()));
+                
+                // 在記憶體中排序 (最新在最前)
+                allResults.sort((a, b) => {
+                    const timeA = a.timestamp?.seconds || 0;
+                    const timeB = b.timestamp?.seconds || 0;
+                    return timeB - timeA;
+                });
+
+                renderTable(allResults);
+            } catch (e) { 
+                console.error("Fetch Error:", e);
+                tbody.innerHTML = `<tr><td colspan="4" class="py-20 text-center text-red-500 font-bold">讀取失敗：${e.message}</td></tr>`;
+            }
+        };
+
+        window.filterResults = () => {
+            const keyword = document.getElementById('search-input').value.toLowerCase();
+            const filtered = allResults.filter(r => 
+                (r.name || "").toLowerCase().includes(keyword) || 
+                (r.unitName || "").toLowerCase().includes(keyword) ||
+                (r.answer || "").toLowerCase().includes(keyword)
+            );
+            renderTable(filtered);
+        };
+
+        function renderTable(data) {
+            const tbody = document.getElementById('results-table-body');
+            if (data.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="4" class="py-20 text-center text-gray-400">目前尚無成果，快去當第一個分享的人吧！</td></tr>';
+                return;
+            }
+            tbody.innerHTML = data.map(r => `
+                <tr class="hover:bg-blue-50/50 transition border-b border-gray-100 group">
+                    <td class="py-6 px-6 align-top">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-400 to-cyan-400 text-white flex items-center justify-center text-xs font-bold">${(r.name || "師")[0]}</span>
+                            <span class="font-bold text-gray-800">${r.name || "匿名老師"}</span>
+                        </div>
+                    </td>
+                    <td class="py-6 px-6 align-top">
+                        <span class="px-3 py-1 bg-white border border-gray-200 rounded-lg text-xs font-bold text-gray-500">${r.unitName || "未知主題"}</span>
+                    </td>
+                    <td class="py-6 px-6 align-top">
+                        <div class="content-wrap text-sm text-gray-700 bg-gray-50/50 p-4 rounded-xl group-hover:bg-white transition cursor-text select-all border border-transparent group-hover:border-blue-100">
+                            ${r.answer || "（無內容）"}
+                        </div>
+                    </td>
+                    <td class="py-6 px-6 align-top text-xs text-gray-400 tabular-nums">
+                        ${r.timestamp ? new Date(r.timestamp.seconds * 1000).toLocaleString('zh-TW', {month:'numeric', day:'numeric', hour:'numeric', minute:'numeric'}) : '剛剛'}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function showFinalSuccess() {
+            const container = document.getElementById('unit-content');
+            container.innerHTML = `
+                <div class="card-pop p-16 text-center animate-fade-in border-t-8 border-green-400">
+                    <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8 shadow-inner">
+                        <i data-lucide="party-popper" class="w-12 h-12"></i>
+                    </div>
+                    <h2 class="text-4xl font-black mb-4">研習完成！太棒了！</h2>
+                    <p class="text-xl text-gray-500 mb-10 max-w-lg mx-auto">蔡文國小的老師們太強了！您已經初步掌握了 AI 溝通術，快去看看夥伴們的創意吧。</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="showResults()" class="px-10 py-4 bg-gray-900 text-white rounded-2xl font-bold shadow-xl hover:bg-black transition scale-110">查看研習成果牆</button>
+                    </div>
+                </div>
+            `;
+            setTimeout(refreshIcons, 0);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.opacity = '1';
+            setTimeout(() => toast.style.opacity = '0', 3000);
+        }
+
+        window.addEventListener('load', refreshIcons);
+    </script>
+</body>
+</html>
