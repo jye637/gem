@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>蔡文國小20251226Gem增能研習</title>
+    <title>蔡文國小Gem增能研習 - AI 教練版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
+  
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Fredoka+One&display=swap');
         body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
         .vibrant-bg { background: linear-gradient(120deg, #fdfbfb 0%, #ebf8ff 100%); }
@@ -347,17 +348,49 @@
             .modules-grid { grid-template-columns: 1fr; } /* 小螢幕變單欄 */
             .slogan-banner { flex-direction: column; border-radius: 20px;}
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Fredoka+One&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; scroll-behavior: smooth; }
+        .vibrant-bg { background: linear-gradient(120deg, #fdfbfb 0%, #ebf8ff 100%); }
+        .card-pop { 
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.08);
+            transition: all 0.3s ease;
+        }
+        .card-pop:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.12); }
+        .nav-button {
+            padding: 8px 16px;
+            border-radius: 12px;
+            transition: all 0.2s;
+            color: #4b5563;
+        }
+        .nav-button:hover { background: #eff6ff; color: #2563eb; }
+        .nav-button.active { background: #2563eb; color: white; }
+        .animate-fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .content-wrap { white-space: pre-wrap; word-break: break-all; }
+        
+        /* 加載動畫 */
+        .spinner {
+            animation: rotate 2s linear infinite;
+            width: 24px;
+            height: 24px;
+            border: 3px solid #e5e7eb;
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+        }
+        @keyframes rotate { 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="vibrant-bg min-h-screen text-gray-800">
-
-    
 
     <div id="app" class="max-w-6xl mx-auto px-4 py-8">
         <!-- 導覽列 -->
         <nav class="flex flex-col lg:flex-row justify-between items-center mb-8 gap-6 bg-white/80 backdrop-blur-md p-4 rounded-3xl shadow-sm sticky top-4 z-40 border border-blue-50">
             <h1 onclick="showSection('home')" class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 flex items-center gap-2 cursor-pointer">
-                <i data-lucide="sparkles" class="text-yellow-400 fill-yellow-400"></i> 20251226蔡文國小Gem增能研習
+                <i data-lucide="sparkles" class="text-yellow-400 fill-yellow-400"></i> 蔡文國小Gem增能研習
             </h1>
             <div id="nav-links" class="flex flex-wrap justify-center gap-2 text-sm font-bold">
                 <button onclick="showSection('home')" class="nav-button">首頁</button>
@@ -376,10 +409,12 @@
             <div class="card-pop p-8 md:p-12 border-t-8 border-blue-500">
                 <div class="max-w-3xl mx-auto text-center mb-12">
                     <h2 class="text-4xl font-black mb-4 text-gray-900 leading-tight">讓 AI 成為您的超強教練！✨</h2>
-                    <p class="text-xl text-gray-500">歡迎蔡文國小的夥伴，使用Google Gem自動化功能。</p>
+                    <p class="text-xl text-gray-500">歡迎蔡文國小的夥伴，體驗 AI 自動即時評鑑功能。</p>
                 </div>
-
-<div class="poster-container">
+                
+                
+                
+                <div class="poster-container">
     <div class="circuit-lines"></div>
 
     <div class="content-layer">
@@ -494,13 +529,6 @@
         </p>
     </div>
 </section>
-
-
-
-                
-
-
-                
                 <div class="bg-gray-50 rounded-3xl p-8 border border-dashed border-gray-300">
                     <h3 class="text-2xl font-bold mb-6 text-center">開始之前，先許個願吧！</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -596,7 +624,7 @@
         signInAnonymously(auth);
 
         const units = [
-            { id: 1, title: "班級經營：情緒安撫小助手", desc: "設計專業的心理輔導角色。", gemExample: "你現在是一位溫和的諮商心理老師...", quiz: "如果 AI 是一位資深班導師，它應該具備什麼樣的角色性格與說話語氣？" },
+            { id: 1, title: "班級經營：情緒安撫小助手", desc: "設計專業的心理輔導角色。", gemExample: "你現在是一位溫和的兒童心理老師...", quiz: "如果 AI 是一位資深班導師，它應該具備什麼樣的角色性格與說話語氣？" },
             { id: 2, title: "學科教學：創意教案設計師", desc: "把生澀課程變身冒險遊戲。", gemExample: "你是一位充滿好奇心的冒險家，請設計數學遊戲...", quiz: "如果要讓 AI 設計『國語修辭』教案，您會如何設定它的專家角色背景？" },
             { id: 3, title: "親師溝通：委婉文字翻譯官", desc: "將想說的話，修飾得更有溫度。", gemExample: "你是一位資深親師溝通專家...", quiz: "當孩子發生偏差行為需告知家長，您會要求 AI 以什麼樣的口吻扮演「校園導師」？" },
             { id: 4, title: "班級活動：活動企劃大師", desc: "讓節慶活動不再千篇一律。", gemExample: "你是一位得獎的兒童活動策展人...", quiz: "規劃蔡文國小校慶闖關時，您會希望 AI 扮演什麼樣的角色來提供創意？" }
