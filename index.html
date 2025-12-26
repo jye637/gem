@@ -56,24 +56,13 @@
             --text-white: #ffffff;
             --xmas-red: #c41e3a;  /* 聖誕紅 */
         }
-        .main-layout {
-    display: grid;
-    grid-template-columns: 1fr;   /* 預設：手機直式 */
-}
+
         @media (min-width: 1024px) {
     .main-layout {
         grid-template-columns: 1.1fr 1.4fr; /* 桌機橫式 */
     }
 }
-        .hero {
-    border-bottom: 4px solid var(--gold);
-}
-@media (min-width: 1024px) {
-    .hero {
-        border-bottom: none;
-        border-right: 4px solid var(--gold);
-    }
-}
+
 
 .poster-layout {
     display: grid;
@@ -101,7 +90,7 @@
             background-color: #051229; /* 網頁背景更深一點 */
             font-family: 'Noto Sans TC', sans-serif;
             display: flex;
-            justify-content: center;
+            justify-content: stretch;
             background-image: 
                 repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.05) 10px, rgba(212, 175, 55, 0.05) 11px),
                 radial-gradient(circle at top, rgba(255,255,255,0.1) 0%, transparent 60%);
