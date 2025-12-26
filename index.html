@@ -16,6 +16,11 @@
             box-shadow: 0 10px 30px rgba(59, 130, 246, 0.08);
             transition: all 0.3s ease;
         }
+        @media (min-width: 1024px) {
+    .poster-container {
+        max-width: 620px; /* 投影或研習教室更舒服 */
+    }
+}
         .card-pop:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.12); }
         .nav-button {
             padding: 8px 16px;
@@ -65,15 +70,17 @@
 
                 /* 海報主體容器 */
         .poster-container {
-            background-color: var(--bg-color);
-            max-width: 480px; /* 限制最大寬度，模擬手機海報 */
-            width: 100%;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 2px solid var(--gold);
-            position: relative;
-        }
+    background-color: var(--bg-color);
+    width: 100%;
+    max-width: min(90vw, 520px); /* 手機友善 + 桌機不會太窄 */
+    margin: 0 auto;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 2px solid var(--gold);
+    position: relative;
+}
+
 
         /* 裝飾線條 */
         .circuit-lines {
@@ -312,6 +319,43 @@
                     <h2 class="text-4xl font-black mb-4 text-gray-900 leading-tight">讓 AI 成為您的超強教練！✨</h2>
                     <p class="text-xl text-gray-500">歡迎蔡文國小的夥伴，體驗 AI 自動即時評鑑功能。</p>
                 </div>
+
+<!-- 教師日常共感區 -->
+<section class="card-pop p-8 md:p-10 border-l-8 border-amber-400 animate-fade-in">
+    <h3 class="text-2xl font-black mb-6 text-gray-800 flex items-center gap-2">
+        <span>🧑‍🏫</span> 老師的一天，從來不只上課
+    </h3>
+
+    <p class="text-gray-600 mb-6 leading-relaxed">
+        在正式體驗 Gem 之前，  
+        我們先一起看看——  
+        <span class="font-bold text-gray-800">老師每天默默在做、卻很少被看見的那些事。</span>
+    </p>
+
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700 text-sm">
+        <li class="bg-gray-50 p-4 rounded-xl">📒 改作業、看聯絡簿、回家長訊息</li>
+        <li class="bg-gray-50 p-4 rounded-xl">📊 填寫各式表單、回報、系統資料</li>
+        <li class="bg-gray-50 p-4 rounded-xl">🧠 想教學調整、差異化、補救策略</li>
+        <li class="bg-gray-50 p-4 rounded-xl">💬 處理學生衝突、情緒安撫</li>
+        <li class="bg-gray-50 p-4 rounded-xl">🎉 規劃活動、校外教學、節慶流程</li>
+        <li class="bg-gray-50 p-4 rounded-xl">⏰ 下班後，腦袋還在想明天的孩子</li>
+    </ul>
+
+    <div class="mt-8 bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center">
+        <p class="font-bold text-amber-700 text-lg">
+            如果有一個 AI，
+        </p>
+        <p class="text-gray-700 mt-2">
+            能幫你分擔這些「花時間卻很重要的事」，  
+            <br class="hidden md:block">
+            你會想把時間，留給誰？
+        </p>
+    </div>
+</section>
+
+
+
+                
     <div class="poster-container">
         <div class="circuit-lines"></div>
 
