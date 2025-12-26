@@ -55,6 +55,27 @@
             --text-white: #ffffff;
             --xmas-red: #c41e3a;  /* 聖誕紅 */
         }
+        .main-layout {
+    display: grid;
+    grid-template-columns: 1fr;   /* 預設：手機直式 */
+}
+        @media (min-width: 1024px) {
+    .main-layout {
+        grid-template-columns: 1.1fr 1.4fr; /* 桌機橫式 */
+    }
+}
+        .hero {
+    border-bottom: 4px solid var(--gold);
+}
+@media (min-width: 1024px) {
+    .hero {
+        border-bottom: none;
+        border-right: 4px solid var(--gold);
+    }
+}
+
+
+
 
                 body {
             margin: 0;
