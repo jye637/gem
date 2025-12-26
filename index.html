@@ -40,9 +40,252 @@
             border-radius: 50%;
         }
         @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+                @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+
+        :root {
+            --bg-color: #0a1f44; /* 深藍背景 */
+            --card-bg: linear-gradient(145deg, #0f2c5e, #0a1f44);
+            --gold: #d4af37;     /* 金色裝飾 */
+            --text-white: #ffffff;
+            --xmas-red: #c41e3a;  /* 聖誕紅 */
+        }
+
+                body {
+            margin: 0;
+            padding: 20px 10px;
+            background-color: #051229; /* 網頁背景更深一點 */
+            font-family: 'Noto Sans TC', sans-serif;
+            display: flex;
+            justify-content: center;
+            background-image: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(212, 175, 55, 0.05) 10px, rgba(212, 175, 55, 0.05) 11px),
+                radial-gradient(circle at top, rgba(255,255,255,0.1) 0%, transparent 60%);
+        }
+
+                /* 海報主體容器 */
+        .poster-container {
+            background-color: var(--bg-color);
+            max-width: 480px; /* 限制最大寬度，模擬手機海報 */
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+
+        /* 裝飾線條 */
+        .circuit-lines {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            opacity: 0.1;
+            pointer-events: none;
+            background: 
+                linear-gradient(90deg, var(--gold) 1px, transparent 1px) 0 0 / 20px 20px,
+                linear-gradient(0deg, var(--gold) 1px, transparent 1px) 0 0 / 20px 20px;
+            z-index: 0;
+        }
+
+        /* 內容層級 */
+        .content-layer {
+            position: relative;
+            z-index: 1;
+            padding-bottom: 20px;
+        }
+
+        /* 頂部聖誕橫幅 */
+        .xmas-banner {
+            background-color: var(--xmas-red);
+            color: var(--text-white);
+            text-align: center;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        /* 標題區 */
+        .header-section {
+            text-align: center;
+            padding: 20px 15px 10px;
+        }
+        .school-name {
+            color: var(--text-white);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            opacity: 0.9;
+        }
+        .main-title {
+            color: var(--gold);
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.3;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        .sub-title {
+            color: var(--text-white);
+            font-size: 1.3rem;
+            margin: 5px 0 15px;
+        }
+        .gem-icon {
+            font-size: 1.5rem;
+            vertical-align: middle;
+        }
+
+        /* 講師與資訊區 (核心佈局) */
+        .info-section {
+            display: flex;
+            flex-wrap: wrap; /* 手機上自動換行 */
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            padding: 15px;
+            margin: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        /* 講師照片 */
+        .profile-wrapper {
+            flex: 0 0 auto;
+            position: relative;
+        }
+        .profile-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--gold);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            /* 加上聖誕帽裝飾 (用CSS模擬) */
+        }
+        .profile-wrapper::after {
+            content: '🎅';
+            position: absolute;
+            top: -10px;
+            right: -5px;
+            font-size: 2rem;
+            transform: rotate(15deg);
+        }
+
+        /* 詳細資訊列表 */
+        .details-list {
+            flex: 1 1 200px; /* 彈性寬度 */
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: var(--text-white);
+        }
+        .details-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 8px;
+        }
+        .info-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        .info-label {
+            color: var(--gold);
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        /* 內容模組區塊 (2x2 Grid) */
+        .modules-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 15px 20px;
+        }
+        .module-box {
+            background: var(--card-bg);
+            border: 1px solid var(--gold);
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            color: var(--text-white);
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .module-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .module-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        .module-desc {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* 標語橫幅區 */
+        .slogan-banner {
+            margin: 20px 15px;
+            padding: 15px;
+            background: linear-gradient(90deg, #0f2c5e, #1a3a6e);
+            border-radius: 50px;
+            border: 2px solid var(--gold);
+            text-align: center;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .slogan-icon {
+            font-size: 2.5rem;
+            /* 用 emoji 組合模擬機器人手拿時鐘愛心 */
+            display: flex;
+            align-items: center;
+        }
+        .slogan-text h3 {
+            margin: 0;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+        .slogan-text p {
+            margin: 5px 0 0;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        /* 頁尾 */
+        .footer-cta {
+            text-align: center;
+            color: var(--text-white);
+            padding: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        /* 手機版優化 */
+        @media (max-width: 400px) {
+            .main-title { font-size: 1.4rem; }
+            .sub-title { font-size: 1.1rem; }
+            .info-section { flex-direction: column; text-align: center; }
+            .details-list li { justify-content: center; }
+            .modules-grid { grid-template-columns: 1fr; } /* 小螢幕變單欄 */
+            .slogan-banner { flex-direction: column; border-radius: 20px;}
+        }
     </style>
 </head>
 <body class="vibrant-bg min-h-screen text-gray-800">
+
+    
 
     <div id="app" class="max-w-6xl mx-auto px-4 py-8">
         <!-- 導覽列 -->
@@ -69,6 +312,86 @@
                     <h2 class="text-4xl font-black mb-4 text-gray-900 leading-tight">讓 AI 成為您的超強教練！✨</h2>
                     <p class="text-xl text-gray-500">歡迎蔡文國小的夥伴，體驗 AI 自動即時評鑑功能。</p>
                 </div>
+    <div class="poster-container">
+        <div class="circuit-lines"></div>
+
+        <div class="content-layer">
+            <header class="xmas-banner">
+                🎄 Merry Christmas! 祝大家聖誕快樂 🎄
+            </header>
+
+            <section class="header-section">
+                <div class="school-name">蔡文國小</div>
+                <h1 class="main-title">
+                    <span class="gem-icon">💎</span> Google Gems
+                </h1>
+                <h2 class="sub-title">在班級經營與親師溝通的應用</h2>
+            </section>
+
+            <section class="info-section">
+                <div class="profile-wrapper">
+                    <img src="https://class.kh.edu.tw/sites/28380/album_file/1/IMG_20251121_083417.JPG_compressed_.JPEG" alt="Handsome Jack 講師" class="profile-img">
+                </div>
+                <ul class="details-list">
+                    <li>
+                        <span class="info-icon">👨‍🏫</span>
+                        <span class="info-label">講師：</span>Handsome Jack
+                    </li>
+                    <li>
+                        <span class="info-icon">📅</span>
+                        <span class="info-label">日期：</span>2025/12/26 (五)
+                    </li>
+                    <li>
+                        <span class="info-icon">⏰</span>
+                        <span class="info-label">時間：</span>14：20 開始
+                    </li>
+                    <li>
+                        <span class="info-icon">📍</span>
+                        <span class="info-label">地點：</span>電腦教室 1 🔔
+                    </li>
+                </ul>
+            </section>
+
+            <section class="modules-grid">
+                <div class="module-box">
+                    <span class="module-icon">🛡️</span>
+                    <div class="module-title">班級經營</div>
+                    <div class="module-desc">建立常規・秩序管理</div>
+                </div>
+                <div class="module-box">
+                    <span class="module-icon">📚</span>
+                    <div class="module-title">學科教學</div>
+                    <div class="module-desc">教案輔助・差異化學習</div>
+                </div>
+                <div class="module-box">
+                    <span class="module-icon">💬</span>
+                    <div class="module-title">親師溝通</div>
+                    <div class="module-desc">高效訊息・溫暖回應</div>
+                </div>
+                <div class="module-box">
+                    <span class="module-icon">✨</span>
+                    <div class="module-title">班級活動設計</div>
+                    <div class="module-desc">創意發想・流程規劃</div>
+                </div>
+            </section>
+
+            <section class="slogan-banner">
+                <div class="slogan-icon">
+                    🤖🕒❤️
+                </div>
+                <div class="slogan-text">
+                    <h3>善用 AI 智慧工具</h3>
+                    <p>將寶貴的時間，留給眼前的孩子</p>
+                </div>
+            </section>
+
+            <footer class="footer-cta">
+                歡迎有興趣教師踴躍參加！
+            </footer>
+        </div>
+    </div>
+
+
                 
                 <div class="bg-gray-50 rounded-3xl p-8 border border-dashed border-gray-300">
                     <h3 class="text-2xl font-bold mb-6 text-center">開始之前，先許個願吧！</h3>
