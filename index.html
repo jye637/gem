@@ -18,7 +18,8 @@
         }
         @media (min-width: 1024px) {
     .poster-container {
-        max-width: 620px; /* 投影或研習教室更舒服 */
+                max-width: 100vw;     /* 讓它可以全寬 */
+        border-radius: 0;     /* 投影更像簡報 */
     }
 }
         .card-pop:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(59, 130, 246, 0.12); }
@@ -74,7 +75,24 @@
     }
 }
 
+.poster-layout {
+    display: grid;
+    grid-template-columns: 1fr; /* 手機：直 */
+    gap: 24px;
+}
 
+@media (min-width: 1024px) {
+    .poster-layout {
+        grid-template-columns: 1.2fr 1fr; /* 桌機：橫 */
+        align-items: center;
+        min-height: 100vh; /* 🔥 這行讓它塞滿螢幕高度 */
+    }
+}
+
+.modules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
 
 
                 body {
@@ -384,8 +402,8 @@
             <header class="xmas-banner">
                 🎄 Merry Christmas! 祝大家聖誕快樂 🎄
             </header>
-
-            <section class="header-section">
+    <div class="poster-left">
+                   <section class="header-section">
                 <div class="school-name">蔡文國小</div>
                 <h1 class="main-title">
                     <span class="gem-icon">💎</span> Google Gems
@@ -416,8 +434,10 @@
                     </li>
                 </ul>
             </section>
+    </div>
 
-            <section class="modules-grid">
+    <div class="poster-right">
+                   <section class="modules-grid">
                 <div class="module-box">
                     <span class="module-icon">🛡️</span>
                     <div class="module-title">班級經營</div>
@@ -439,6 +459,8 @@
                     <div class="module-desc">創意發想・流程規劃</div>
                 </div>
             </section>
+    </div>
+
 
             <section class="slogan-banner">
                 <div class="slogan-icon">
